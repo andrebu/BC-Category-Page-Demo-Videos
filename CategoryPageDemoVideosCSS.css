@@ -37,26 +37,42 @@
 .videoDemoBtn.videoPlaying {
 	background-color: #e53b2c;
 }
+.videoDemoBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 60px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 90;
+    display: none;
+    clip: rect(auto, auto, auto, auto);
+/*     background-color: lightgray; */
+	background-color: #39B54A;
+}
+.videoDemoBtn.videoPlaying {
+	background-color: #e53b2c;
+}
 .videoDemoBtn .triangle {
     width: 0px;
-    height: 0px;
-    left: 28px;
-	top: 12px;
-    position: absolute;
-    border-top: 8px solid transparent;
-    border-bottom: 10px solid transparent;
-	border-left: 16px solid #fff;
-    z-index: 1;
-    border-radius: 2px;
-/*     opacity: 0.5; */
+	height: 0px;
+	left: 20px;
+	top: 8px;
+	position: absolute;
+	border-top: 6px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-left: 12px solid #fff;
+	z-index: 1;
+	border-radius: 2px;
+	/* opacity: 0.5; */
 	color: #fff;
 }
 .videoDemoBtn .triangle:after {
 	content: "Show Video";
 	position: absolute;
-	left: -28px;
-	top: 12px;
 	text-transform: uppercase;
+	left: -19px;
+	top: 9px;
+	font-size: 8px;
 }
 /*
 .videoDemoBtn:hover .triangle {
@@ -64,11 +80,11 @@
 }
 */
 .videoDemoBtn.videoPlaying .triangle {
-	border: 8px solid #fff;
-	left: 26px;
-	top: 12px; 
+	border: 6px solid #fff;
+	left: 20px;
+	top: 8px; 
 }
 .videoDemoBtn.videoPlaying .triangle:after {
 	content: "Hide Video";
-	left: -18px;
+	left: -12px;
 }
