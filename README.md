@@ -8,9 +8,10 @@ BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/c
 
 ###TODO
 
-1. Fix behavior - when out of stock and with video, neither appears.
+1. ~~Fix behavior - when out of stock and with video, neither appears.~~
 2. Not showing up on brands.
 3. When with video, shows “HasVideo” on receipt/invoice.
+4. Integrate the "videoDemo" div into JS and out of BC panel
 
 ================================================================================================
 
