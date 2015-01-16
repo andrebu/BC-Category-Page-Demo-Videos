@@ -29,8 +29,12 @@
 		var ProductCatOpt = $(this);
 			ProductId = $(this).parent().parent().find('div.ProductImage').attr('data-product');
 		function ajax1() {
-		    return $.ajax('/content/videos/'+ProductId+'.mp4')
-			    .done(function() { 
+		    return $.ajax({
+			            url: '/content/videos/'+ProductId+'.mp4',
+			            type: 'HEAD',
+			            dataType: 'html',
+			            async: false
+			    }).done(function() { 
 			        ProductCatOpt.addClass('withVideo');
 			    }).fail(function() { 
 			    	return;
