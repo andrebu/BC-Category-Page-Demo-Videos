@@ -1,5 +1,5 @@
 <script type="text/javascript">
-
+$(document).ready(function(){
 	$('.ProductList').on('click', '.videoDemoBtn', function () {
 	        if ($(this).hasClass('videoPlaying')) {
 	            $(this).removeClass('videoPlaying');
@@ -7,15 +7,15 @@
 	            $(this).parent().find('div.categoryDemoVideo').hide().html('');
 	            }
 	            else {
-	                var ProductId = $(this).parent().find('div.ProductImage').attr('data-product');
+	                var productNumber = $(this).parent().find('div.ProductImage').attr('data-product');
+						videoTagCode = '<video id="demoVideo" class="video" preload autoplay loop autobuffer muted controls width="100%" height="100%" poster="/content/videos/'+productNumber+'.jpg">'+
+				                		'<source src="/content/videos/'+productNumber+'.mp4">'+
+				                		'<source src="/content/videos/'+productNumber+'.ogv" type="video/ogg">'+
+				                		'<p>Your browser does not support this video.  Please upgrade your browser!</p>'+
+				                	'</video>'
 	                $(this).addClass('videoPlaying');
 /* 	                $(this).parent().find('img').hide();         */
-	                $(this).parent().find('div.categoryDemoVideo').show().html(
-	                	'<video id="demoVideo" class="video" preload="auto" autoplay="autoplay" loop="loop" autobuffer="autobuffer" muted="muted" controls="controls" width="100%" height="100%" poster="/content/videos/'+ProductId+'.jpg">'+
-	                		'<source src="/content/videos/'+ProductId+'.mp4">'+
-	                		'<source src="/content/videos/'+ProductId+'.ogv" type="video/ogg">'+
-	                		'<p>Your browser does not support this video.  Please upgrade your browser!</p>'+
-	                	'</video>');
+	                $(this).parent().find('div.categoryDemoVideo').show().html(videoTagCode);
 	                        }
 /*
                         	var video = document.getElementById('demoVideo');
@@ -27,13 +27,12 @@
 
 	$(".Options").each(function checkForVideo(url) {
 		var ProductCatOpt = $(this);
-			ProductId = $(this).parent().parent().find('div.ProductImage').attr('data-product');
+			productNumber = $(this).parent().parent().find('div.ProductImage').attr('data-product');
 		function ajax1() {
 		    return $.ajax({
-			            url: '/content/videos/'+ProductId+'.mp4',
+			            url: '/content/videos/'+productNumber+'.mp4',
 			            type: 'HEAD',
-			            dataType: 'html',
-			            async: false
+			            async: true
 			    }).done(function() { 
 			        ProductCatOpt.addClass('withVideo');
 			    }).fail(function() { 
@@ -44,5 +43,5 @@
 		        ProductCatOpt.closest('li').append('<span class="videoDemoBtn"><div class="triangle"></div></span>');
 	        });
 	    });
-
+});
 </script>
