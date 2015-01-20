@@ -4,18 +4,22 @@ $(document).ready(function(){
 	        if ($(this).hasClass('videoPlaying')) {
 	            $(this).removeClass('videoPlaying');
 /* 	            $(this).parent().find('img').show(); */
-	            $(this).parent().find('div.categoryDemoVideo').hide().html('');
+	            $(this).parent().find('div.categoryDemoVideo').remove();
 	            }
 	            else {
 	                var productNumber = $(this).parent().find('div.ProductImage').attr('data-product');
-						videoTagCode = '<video id="demoVideo" class="video" preload autoplay loop autobuffer muted controls width="100%" height="100%" poster="/content/videos/'+productNumber+'.jpg">'+
-				                		'<source src="/content/videos/'+productNumber+'.mp4">'+
-				                		'<source src="/content/videos/'+productNumber+'.ogv" type="video/ogg">'+
-				                		'<p>Your browser does not support this video.  Please upgrade your browser!</p>'+
-				                	'</video>'
+						videoTagCode = '<div class="categoryDemoVideo">'+
+											'<video id="demoVideo" class="video" preload autoplay loop autobuffer muted controls width="100%" height="100%" poster="/content/videos/'+productNumber+'.jpg">'+
+				                				'<source src="/content/videos/'+productNumber+'.mp4">'+
+				                				'<source src="/content/videos/'+productNumber+'.ogv" type="video/ogg">'+
+				                				'<p>Your browser does not support this video.  Please upgrade your browser!</p>'+
+					                		'</video>'+
+					                	'</div>';
 	                $(this).addClass('videoPlaying');
 /* 	                $(this).parent().find('img').hide();         */
-	                $(this).parent().find('div.categoryDemoVideo').show().html(videoTagCode);
+//	                $(this).parent().find('div.categoryDemoVideo').show().html(videoTagCode);
+	                $(this).parent().find('.ProductImage').append(videoTagCode);
+	                 
 	                        }
 /*
                         	var video = document.getElementById('demoVideo');
@@ -32,7 +36,7 @@ $(document).ready(function(){
 		    return $.ajax({
 			            url: '/content/videos/'+productNumber+'.mp4',
 			            type: 'HEAD',
-			            async: true
+			            //async: false
 			    }).done(function() { 
 			        ProductCatOpt.addClass('withVideo');
 			    }).fail(function() { 
