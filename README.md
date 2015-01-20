@@ -4,120 +4,47 @@ BigCommerce-Category-Page-Demo-Videos
 BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/contents/Videos/ and become trigger-able with a button
 
 
-================================================================================================
+================================================================================================  
 
-###TODO
-
-1. ~~Fix behavior - when out of stock and with video, neither appears.~~
-2. Not showing up on brands.
-3. When with video, shows “HasVideo” on receipt/invoice.
-4. Integrate the "videoDemo" div into JS and out of BC panel
-
-================================================================================================
 
 ## Installation
 
-3.1 - Add /* Category Product List Video */ CSS
-3.2 - Add CategoryPageVideos.html Panel to Panels/CategoryContent.html
-                            %%GLOBAL_CategoryProductListing%%
-                            %%Panel.CategoryPageVideos%%                            
-                        </ul>
-                        
-3.3 - Add JavaScript--that hides the "Options HasVideo" trigger--to Snippets/ProductAddToCart.html
-3.4 - Add 'div.categoryDemoVideo' HTML to Snippets/CategoryProductsItem.html 
-    <div class="ProductImage QuickView" data-product="%%GLOBAL_ProductId%%">
-        %%GLOBAL_ProductThumb%%
-        <div class="categoryDemoVideo" class="%%GLOBAL_ProductId%%"></div>
-    </div>
+> These are the latest instructions and are up to date.  I will update them as the widget is improved.
 
-3.5 - Create Videos folder in WebDav (/dav/Content/Videos) and add .mp4/.ogv/.webm videos with the ProductID.  Example:  
-	<li class="Odd " style="min-height: 472px; position: absolute; left: 0px; top: 0px;">
-		<div class="ProductImage QuickView" data-product="296"> <!--  --> 
-		<!-- The ProductID is the number value of 'data-product="###"' -->
-		
-3.6 - Remind to add "HasDemoVideo" Option (checkbox, value field) to Product Option Set
+1. Add **CategoryPageVideos.html Panel file** to your folder in WebDAV/dav/template/Panels  
+  1. To access your WebDAV panel, BigCommerce gives you instructions in your Admin Panel.  
+  2. Click "Design" in the top right corner of your store admin panel.  
+  3. Then click "WebDAV" in the "Current Theme" section and follow the instructions
+2. Add %%Panel.CategoryPageVideos%% to bottom of Panels/category.html
+  + Example:
+```HTML
+        </div>
 
-3.4 - Video over product listing Popup
-						...
-                        <ul class="ProductList %%GLOBAL_DisplayMode%%">
-                            %%GLOBAL_CategoryProductListing%%
+<!-- Put panel as it is here, right before the closing body tag -->
+        %%Panel.CategoryPageVideos%%                            
+<!-- Put panel as it is here, right before the closing body tag -->
+        
+    </body>
+</html>
+```
+![BigCommerce Category Page Demo Videos Installation Example](https://raw.githubusercontent.com/iamandrebulatov/BC-Category-Page-Demo-Videos/master/CategoryPageVideos-Screen%20Shot%202015-01-19%20at%208.08.50%20PM%201.png "BigCommerce Product Page Demo Videos Installation Example")
+3. Create Videos Upload Folder
+  + Create a folder for uploading the product demo videos in WebDAV /dav/Contents/Videos/
+  + When you upload videos, add an .mp4 version, as well as an .ogv version for playback on all browsers
+  + Name the videos by the product ID.  The product ID can be found by ... ?  
+		<!-- The ProductID is the number value of 'data-product="###"' -->  
+
+4. Add "HasDemoVideo" Option (checkbox, value field) to Product Option Set
+
+
                             
-<script type="text/javascript">
-
-$(".Options").each(function checkForVideo(url) {
-
-	var ProductCatOpt = $(this);
-		ProductId = $(this).parent().parent().find('div.ProductImage').attr('data-product');
-
-	function ajax1() {
-	    return $.ajax('/content/videos/'+ProductId+'.mp4')
-		    .done(function() { 
-		        $(ProductCatOpt).addClass('withVideo');
-		    }).fail(function() { 
-		    	return;
-		    });
-		}
-		$.when(ajax1()).done(function(a1){
-
-	        $('.withVideo').closest('li').append('<span class="videoDemoBtn"><div class="triangle"></div></span>');
-	
-	        $('.videoDemoBtn').click(function() {    
-	
-	        if($(this).hasClass('videoPlaying')) {
-	            $(this).removeClass('videoPlaying');
-	            $(this).parent().find('img').show();
-	            $(this).parent().find('div.categoryDemoVideo').hide().html('');
-	            }
-	            else {
-	        
-	                var ProductId = $(this).parent().find('div.ProductImage').attr('data-product');
-	                $(this).addClass('videoPlaying');
-	                $(this).parent().find('img').hide();        
-	                $(this).parent().find('div.categoryDemoVideo').show().html('<video id="demoVideo" class="video" preload="auto" autoplay="autoplay" loop="loop" autobuffer="autobuffer" muted="muted" controls="controls" width="100%" height="100%"><source src="https://store-mixi7d.mybigcommerce.com/content/videos/'+ProductId+'.mp4"><source src="https://store-mixi7d.mybigcommerce.com/content/videos/'+ProductId+'.ogv" type="video/ogg"><p>Your browser does not support this video.  Please upgrade your browser!</p></video>');
-	                        }
-	                });
-
-            });
-
-
-/*
-	var video = document.getElementById('demoVideo');
-	video.addEventListener('click',function(){
-	  video.play();
-	},false);
-*/
-
-
-        });
-
-</script>
-                            
-                        </ul>
-                        ...
-
-3.5 - Add following JS to Snippets/ProductAddToCart.html
-...
-<!-- //Custom Add to Wishlist -->
-//]]></script>
-
-%%GLOBAL_EventDateJavascript%%
-
-<script language="javascript" type="text/javascript">
-            $('.productAttributeList').find("span:contains('HasDemoVideo')").closest('.productAttributeRow').hide();
-</script>
-
-
-
-
 
 
 ================================================================================================
 
 ## Using
 
-To get this to work, you just need to require the module once per run-time, like so.
-
-    Just install and it'l do the work for you!
+    Just install, add videos to folder, add option to product, and it'll do the work for you!
 
 ================================================================================================
 
@@ -140,6 +67,15 @@ The absolute best thing to do is to sign up with [ChangeTip](//changetip.com) or
 
 [![ChangeTip donate button](http://andrebulatov.com/wp-content/uploads/tipme_button.png)](//www.changetip.com/tipme/andre.bulatov/ "Donate once-off to this project using ChangeTip")
 [![GratiPay donate button](http://andrebulatov.com/wp-content/uploads/gratipay-button.png)](//www.gratipay.com/andrebulatov/ "Donate once-off to this project using GratiPay")
+
+================================================================================================
+
+###TODO
+
+1. ~~Fix behavior - when out of stock and with video, neither appears.~~
+2. ~~Not showing up on brands.~~
+3. When with video, shows “HasVideo” on receipt/invoice.
+4. ~~Integrate the "videoDemo" div into JS and out of BC panel~~
 
 
 ## License
