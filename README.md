@@ -10,7 +10,7 @@ BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/c
 
 > These are the latest instructions and are up to date.  I will update them as the widget is improved.
 
-1. Add **CategoryPageVideos.html Panel file** to your folder in WebDAV/dav/template/Panels  
+1. Upload **CategoryPageVideos.html Panel file** to your folder in WebDAV/dav/template/Panels  
   1. To access your WebDAV panel, BigCommerce gives you instructions in your Admin Panel.  
   2. Click "Design" in the top right corner of your store admin panel.  
   3. Then click "WebDAV" in the "Current Theme" section and follow the instructions
