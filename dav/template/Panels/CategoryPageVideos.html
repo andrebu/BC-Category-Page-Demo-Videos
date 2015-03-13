@@ -1,124 +1,130 @@
 <script type="text/javascript">
-$(document).ready(function() {
 //Category Page Demo Videos 
-    $('<style type="text/css">\
-    /* Category Product List Video */\
-	.CategoryContent .ProductList li {\
-		width: 310px;\
-		clip: rect(auto, auto, auto, 14px);\
-		overflow: visible;\
-	}\
-	.SearchContainer .ProductList li {\
-		overflow: visible;\
-	//	width: 310px;\
-	}\
-	//#SearchProduct_Container .videoDemoBtn,\
-	//.CategoryContent .videoDemoBtn {\
-	//	top:0;\
-	//	right:-13px;\
-	//	display: block;\
-	//}\
-	.categoryDemoVideo {\
-	    position: absolute;\
-	    top: 0;\
-	    left: 0;\
-	    height: 100%;\
-	}\
-	.categoryDemoVideo video {\
-	    height: 100%;\
-	    width: 100%;\
-	}\
-	.Rating.Rating0 {\
-	    display: none !important;\
-	}\
-	.videoDemoBtn {\
-	    width: 50px;\
-	    height: 50px;\
-	    border-radius: 60px;\
-	    position: absolute;\
-	    cursor: pointer;\
-	    z-index: 90;\
-	    display: block;\
-	    clip: rect(auto, auto, auto, auto);\
-		background-color: #39B54A;\
-		top:0;\
-	//	right:-13px;\
-		right:0;\
-	}\
-	.videoDemoBtn.videoPlaying {\
-		background-color: #e53b2c;\
-	}\
-	.videoDemoBtn .triangle {\
-	    width: 0px;\
-		height: 0px;\
-		left: 20px;\
-		top: 8px;\
-		position: absolute;\
-		border-top: 6px solid transparent;\
-		border-bottom: 7px solid transparent;\
-		border-left: 12px solid #fff;\
-		z-index: 1;\
-		border-radius: 2px;\
-		color: #fff;\
-	}\
-	.videoDemoBtn .triangle:after {\
-		content: "Show Video";\
-		position: absolute;\
-		text-transform: uppercase;\
-		left: -19px;\
-		top: 9px;\
-		font-size: 8px;\
-	}\
-	.videoDemoBtn.videoPlaying .triangle {\
-		border: 6px solid #fff;\
-		left: 19px;\
-		top: 8px; \
-	}\
-	.videoDemoBtn.videoPlaying .triangle:after {\
-		content: "Hide Video";\
-		left: -12px;\
-	}\
-	</style>')
-        .appendTo('head');
-    /* Play-Stop trigger button functionality */
-    $('.ProductList').on('click', '.videoDemoBtn', function() {
-        if ($(this).hasClass('videoPlaying')) {
-            $(this).removeClass('videoPlaying');
-            $(this).parent().find('.categoryDemoVideo').remove();
-        } else {
-            //var productNumber = $(this).parent().find('.ProductImage').attr('data-product');
-			var	productNumber = $(this).parent().find('.ProductCompareButton .CheckBox').attr('value');
-            var videoTagCode = '<div class="categoryDemoVideo">' +
-                '<video id="demoVideo" class="video" preload autoplay loop autobuffer muted controls width="100%" height="100%" poster="/content/videos/' + productNumber + '.jpg">' +
-                '<source src="/content/videos/' + productNumber + '.mp4">' +
-                '<source src="/content/videos/' + productNumber + '.ogv" type="video/ogg">' +
-                '<p>Your browser does not support this video.  Please upgrade your browser!</p>' +
-                '</video>' +
-                '</div>';
-            $(this).addClass('videoPlaying');
-            $(this).parent().find('.ProductImage').append(videoTagCode);
-        }
-    });
-    /* Visit each product page and check for video options tag, and if tag exists, add a Play/Stop tirgger button */
-    //$(".Options").each(function checkForVideo(url) {
-	$(".ProductActionAdd a:contains('Options')").each(function checkForVideo(url) {
-        var ProductCatOpt = $(this);
-        //var productNumber = $(this).parent().parent().find('.ProductImage').attr('data-product');
-		var	productNumber = $(this).parent().parent().find('.ProductCompareButton .CheckBox').attr('value');
-
-        function ajax1() {
-            return $.ajax({
-                url: '/content/videos/' + productNumber + '.mp4',
-                type: 'HEAD',
-            }).done(function() {
-                ProductCatOpt.addClass('withVideo');
-            }).fail(function() {
-                return;
-            });
-        }
-        $.when(ajax1()).done(function(a1) {
-            ProductCatOpt.closest('li').append('<span class="videoDemoBtn"><div class="triangle"></div></span>');
-        });
-    });
-});
+	    $('<style type="text/css">\
+	    /* Category Product List Video */\
+		.CategoryContent .ProductList li {\
+			width: 310px;\
+			clip: rect(auto, auto, auto, 14px);\
+			overflow: visible;\
+		}\
+		.SearchContainer .ProductList li {\
+			overflow: visible;\
+			width: 310px;\
+		//	width: auto;\
+		}\
+		//#SearchProduct_Container .videoDemoBtn,\
+		//.CategoryContent .videoDemoBtn {\
+		//	top:0;\
+		//	right:-13px;\
+		//	display: block;\
+		//}\
+		.categoryDemoVideo {\
+		    position: absolute;\
+		    top: 0;\
+		    left: 0;\
+		    height: 100%;\
+		}\
+		.categoryDemoVideo video {\
+		    height: 100%;\
+		    width: 100%;\
+		}\
+		.Rating.Rating0 {\
+		    display: none !important;\
+		}\
+		.videoDemoBtn {\
+		    width: 50px;\
+		    height: 50px;\
+		    border-radius: 60px;\
+		    position: absolute;\
+		    cursor: pointer;\
+		    z-index: 90;\
+		    display: block;\
+		    clip: rect(auto, auto, auto, auto);\
+			background-color: #39B54A;\
+			top:0;\
+		//	right:-13px;\
+			right:0;\
+		}\
+		.videoDemoBtn.videoPlaying {\
+			background-color: #e53b2c;\
+		}\
+		.videoDemoBtn .triangle {\
+		    width: 0px;\
+			height: 0px;\
+			left: 20px;\
+			top: 8px;\
+			position: absolute;\
+			border-top: 6px solid transparent;\
+			border-bottom: 7px solid transparent;\
+			border-left: 12px solid #fff;\
+			z-index: 1;\
+			border-radius: 2px;\
+			color: #fff;\
+		}\
+		.videoDemoBtn .triangle:after {\
+			content: "Show Video";\
+			position: absolute;\
+			text-transform: uppercase;\
+			left: -19px;\
+			top: 9px;\
+			font-size: 8px;\
+		}\
+		.videoDemoBtn.videoPlaying .triangle {\
+			border: 6px solid #fff;\
+			left: 19px;\
+			top: 8px; \
+		}\
+		.videoDemoBtn.videoPlaying .triangle:after {\
+			content: "Hide Video";\
+			left: -12px;\
+		}\
+		</style>')
+	        .appendTo('head');
+	        
+	function showProductListDemoVideos() {
+	    /* Play-Stop trigger button functionality */
+	    $('.ProductList').on('click', '.videoDemoBtn', function() {
+	        if ($(this).hasClass('videoPlaying')) {
+	            $(this).removeClass('videoPlaying');
+	            $(this).parent().find('.categoryDemoVideo').remove();
+	        } else {
+	            //var productNumber = $(this).parent().find('.ProductImage').attr('data-product');
+				var	productNumber = $(this).parent().find('.ProductCompareButton .CheckBox').attr('value');
+	            var videoTagCode = '<div class="categoryDemoVideo">' +
+	                '<video id="demoVideo" class="video" preload autoplay loop autobuffer muted controls width="100%" height="100%" poster="/content/videos/' + productNumber + '.jpg">' +
+	                '<source src="/content/videos/' + productNumber + '.mp4">' +
+	                '<source src="/content/videos/' + productNumber + '.ogv" type="video/ogg">' +
+	                '<p>Your browser does not support this video.  Please upgrade your browser!</p>' +
+	                '</video>' +
+	                '</div>';
+	            $(this).addClass('videoPlaying');
+	            $(this).parent().find('.ProductImage').append(videoTagCode);
+	        }
+	    });
+	    /* Visit each product page and check for video options tag, and if tag exists, add a Play/Stop tirgger button */
+	    //$(".Options").each(function checkForVideo(url) {
+		$(".ProductActionAdd a:contains('Options')").each(function checkForVideo(url) {
+	        var ProductCatOpt = $(this);
+	        //var productNumber = $(this).parent().parent().find('.ProductImage').attr('data-product');
+			var	productNumber = $(this).parent().parent().find('.ProductCompareButton .CheckBox').attr('value');
+	
+	        function ajax1() {
+	            return $.ajax({
+	                url: '/content/videos/' + productNumber + '.mp4',
+	                type: 'HEAD',
+	            }).done(function() {
+	                ProductCatOpt.addClass('withVideo');
+	            }).fail(function() {
+	                return;
+	            });
+	        }
+	        $.when(ajax1()).done(function(a1) {
+	            ProductCatOpt.closest('li').append('<span class="videoDemoBtn"><div class="triangle"></div></span>');
+	        });
+	    });
+	};
+	    
+	$(document).ready(function() {
+		showProductListDemoVideos();
+	});
 </script>
