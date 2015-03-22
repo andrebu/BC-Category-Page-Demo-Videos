@@ -82,6 +82,7 @@
 	        .appendTo('head');
 	        
 	function showProductListDemoVideos() {
+	var start = new Date().getTime();
 	    /* Play-Stop trigger button functionality */
 	    $('.ProductList').on('click', '.videoDemoBtn', function() {
 	        if ($(this).hasClass('videoPlaying')) {
@@ -103,10 +104,11 @@
 	    });
 	    /* Visit each product page and check for video options tag, and if tag exists, add a Play/Stop tirgger button */
 	    //$(".Options").each(function checkForVideo(url) {
-		$(".ProductActionAdd a:contains('Options')").each(function checkForVideo(url) {
-	        var ProductCatOpt = $(this);
+		$('.ProductCompareButton .CheckBox').each(function checkForVideo(url) {
+			var	$thisProductListingItem = $(this).closest('li');
+			var	productNumber = $(this).attr('value');
+	        var ProductCatOpt = $(this).parents().eq(3).find('.ProductActionAdd a');
 	        //var productNumber = $(this).parent().parent().find('.ProductImage').attr('data-product');
-			var	productNumber = $(this).parent().parent().find('.ProductCompareButton .CheckBox').attr('value');
 	
 	        function ajax1() {
 	            return $.ajax({
@@ -119,9 +121,10 @@
 	            });
 	        }
 	        $.when(ajax1()).done(function(a1) {
-	            ProductCatOpt.closest('li').append('<span class="videoDemoBtn"><div class="triangle"></div></span>');
+	            $thisProductListingItem.append('<span class="videoDemoBtn"><div class="triangle"></div></span>');
 	        });
 	    });
+    console.log(new Date().getTime() - start);
 	};
 	    
 	$(document).ready(function() {
