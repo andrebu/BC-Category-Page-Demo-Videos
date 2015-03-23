@@ -14,14 +14,16 @@ BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/c
   1. To access your WebDAV panel, BigCommerce gives you instructions in your Admin Panel.  
   2. Click "Design" in the top right corner of your store admin panel.  
   3. Then click "WebDAV" in the "Current Theme" section and follow the instructions
-2. Add %%Panel.CategoryPageVideos%% to bottom of Panels/category.html
+2. Add **%%Panel.CategoryPageVideos%%** reference to bottom of Panels/category.html
   + Example:
 ```HTML
         </div>
 
-<!-- Put panel as it is here, right before the closing body tag -->
+        %%Panel.CategoryPageColorSwatch%%                            
+        %%Panel.CategoryPageOutOfStockRibbon%%
+<!-- ADD Panel reference here -->
         %%Panel.CategoryPageVideos%%                            
-<!-- Put panel as it is here, right before the closing body tag -->
+<!-- ADD Panel reference here -->
         
     </body>
 </html>
@@ -33,7 +35,7 @@ BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/c
   + Name the videos by the product ID.  The product ID can be found by ... ?  
 		<!-- The ProductID is the number value of 'data-product="###"' -->  
 
-4. Add "HasDemoVideo" Option (checkbox, value field) to Product Option Set
+~~4. Add "HasDemoVideo" Option (checkbox, value field) to Product Option Set~~
 
 
                             
