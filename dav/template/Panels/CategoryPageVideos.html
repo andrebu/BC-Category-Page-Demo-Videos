@@ -94,8 +94,8 @@
         });
         /* Visit each product page and check for video options tag, and if tag exists, add a Play/Stop tirgger button */
         $('.ProductCompareButton .CheckBox').each(function checkForVideo(url) {
-            var    $thisProductListingItem = $(this).closest('li');
-            var    productNumber = $(this).attr('value');
+            var $thisProductListingItem = $(this).closest('li');
+            var productNumber = $(this).attr('value');
             var ProductCatOpt = $(this).parents().eq(3).find('.ProductActionAdd a');
     
             function ajax1() {
