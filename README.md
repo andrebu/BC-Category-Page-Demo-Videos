@@ -3,7 +3,8 @@
 BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/contents/Videos/ and become trigger-able with a button
 
 
-================================================================================================  
+------------------------------------------------------------------------------------
+
 
 
 ## Installation
@@ -41,23 +42,56 @@ BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/c
                             
 
 
-================================================================================================
+------------------------------------------------------------------------------------
+
 
 ## Using
 
-    Just install, add videos to folder, add option to product, and it'll do the work for you!
+	 Create Videos Upload Folder
+	  + Create a folder for uploading the product demo videos in WebDAV /dav/Contents/Videos/
+	  + When you upload videos, add an .mp4 version, as well as an .ogv version for playback on all browsers
+	  + Name the videos by the product ID.  The product ID can be found by ... ?  
+			<!-- The ProductID is the number value of 'data-product="###"' -->  
 
-================================================================================================
 
-## Other BigCommerce modules
+------------------------------------------------------------------------------------
 
+
+## Other BigCommerce modules that I've made
+
+* [BigCommerce Carousel Slider Slide Show Custom](https://github.com/iamandrebulatov/BC-Carousel-Slider-Slide-Show-Custom)
 * [BigCommerce Product Page Demo Videos](https://github.com/iamandrebulatov/BigCommerce-Product-Page-Demo-Videos)
 * [BigCommerce Product Page Brand Descriptions](https://github.com/iamandrebulatov/BigCommerce-Product-Page-Brand-Descriptions)
 * [BigCommerce Product Page Brand Logos](https://github.com/iamandrebulatov/BigCommerce-Product-Page-Brand-Logos)
+* [BigCommerce Product Page Dynamic Product Type Descriptions](https://github.com/iamandrebulatov/BC-Product-Page-Dynamic-Product-Type-Descriptions)
+* [BigCommerce Product Page Image Zoom](https://github.com/iamandrebulatov/BC-Product-Page-Image-Zoom)
 * [BigCommerce Category Page Color Swatch](https://github.com/iamandrebulatov/BigCommerce-Color-Swatch-On-Category)
 * [BigCommerce Category Page 2nd Alternate Thumbnail](https://github.com/iamandrebulatov/BigCommerce-Category-Pages-2nd-Alternate-Thumbnail)
 * [BigCommerce Category Page Videos](https://github.com/iamandrebulatov/BigCommerce-Category-Page-Demo-Videos)
 * [BigCommerce Category Page Out of Stock Ribbons](https://github.com/iamandrebulatov/BigCommerce-Out-of-Stock-Category-Items)
+* [BigCommerce Category Page Staff Picks Selector](https://github.com/iamandrebulatov/BC-Staff-Picks-Selector)
+* [BigCommerce Preview On MouseOver](https://github.com/iamandrebulatov/BC-Preview-On-MouseOver)
+* [BigCommerce Shipping Options Description](https://github.com/iamandrebulatov/BC-Shipping-Options-Descriptions)
+* [BigCommerce Welcoming Age Gate](https://github.com/iamandrebulatov/BC-Welcoming-Age-Gate)
+* [BigCommerce 360 Product View](https://github.com/iamandrebulatov/BC-360-Product-View)
+* [BigCommerce ThumbScroll](https://github.com/iamandrebulatov/BC-ThumbScroll)
+* [BigCommerce Product Accessory Options Choice Upsell](https://github.com/iamandrebulatov/BC-Product-Accessory-Options-Choice-Upsell)
+* [BigCommerce Navigation Dynamic List Item Visual Cues](https://github.com/iamandrebulatov/BC-Nav-Dynamic-List-Item-Visual-Cues)
+
+
+
+------------------------------------------------------------------------------------
+
+
+###TODO
+
+1. ~~Fix behavior - when out of stock and with video, neither appears.~~
+2. ~~Not showing up on brands.~~
+3. ~~When with video, shows “HasVideo” on receipt/invoice.~~
+4. ~~Integrate the "videoDemo" div into JS and out of BC panel~~
+
+
+------------------------------------------------------------------------------------
 
 
 ## Support
@@ -69,21 +103,15 @@ The absolute best thing to do is to sign up with [ChangeTip](//changetip.com) or
 [![ChangeTip donate button](http://andrebulatov.com/wp-content/uploads/tipme_button.png)](//www.changetip.com/tipme/andre.bulatov/ "Donate once-off to this project using ChangeTip")
 [![GratiPay donate button](http://andrebulatov.com/wp-content/uploads/gratipay-button.png)](//www.gratipay.com/andrebulatov/ "Donate once-off to this project using GratiPay")
 
-================================================================================================
 
-###TODO
-
-1. ~~Fix behavior - when out of stock and with video, neither appears.~~
-2. ~~Not showing up on brands.~~
-3. When with video, shows “HasVideo” on receipt/invoice.
-4. ~~Integrate the "videoDemo" div into JS and out of BC panel~~
+------------------------------------------------------------------------------------
 
 
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Andre Bulatov
+Copyright (c) 2014-2015 Andre Bulatov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
