@@ -3,7 +3,8 @@
         $('<style type="text/css">\
         /* Category Product List Video */\
         .CategoryContent .ProductList li {\
-            width: 310px;\
+            /*width: 310px;*/\
+            width: 33%;\
             clip: rect(auto, auto, auto, 14px);\
             overflow: visible;\
         }\
@@ -83,8 +84,8 @@
                 var productNumber = $(this).parent().find('.ProductCompareButton .CheckBox').attr('value');
                 var videoTagCode = '<div class="categoryDemoVideo">' +
                     '<video id="demoVideo" class="video" preload autoplay loop autobuffer muted controls width="100%" height="100%" >' +
-                    '<source src="/content/videos/' + productNumber + '.mp4" type="video/mp4">' +
-                    '<source src="/content/videos/' + productNumber + '.ogv" type="video/ogg">' +
+                    '<source src="%%GLOBAL_CdnStorePath%%/content/videos/' + productNumber + '.mp4" type="video/mp4">' +
+                    '<source src="%%GLOBAL_CdnStorePath%%/content/videos/' + productNumber + '.ogv" type="video/ogg">' +
                     '<p>Your browser does not support this video.  Please upgrade your browser!</p>' +
                     '</video>' +
                     '</div>';
@@ -100,7 +101,7 @@
     
             function ajax1() {
                 return $.ajax({
-                    url: '/content/videos/' + productNumber + '.mp4',
+                    url: '%%GLOBAL_CdnStorePath%%/content/videos/' + productNumber + '.mp4',
                     type: 'HEAD',
                 }).done(function() {
                     ProductCatOpt.addClass('withVideo');
