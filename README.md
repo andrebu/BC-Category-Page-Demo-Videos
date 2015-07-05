@@ -82,8 +82,15 @@ BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/c
 
 ------------------------------------------------------------------------------------
 
+## Resources
 
-###TODO
+- [Css-tricks.com: Hiding Native HTML5 Video Controls in Full-Screen Mode](https://css-tricks.com/custom-controls-in-html5-video-full-screen/)
+- []()
+
+------------------------------------------------------------------------------------
+
+
+### TODO
 
 1. ~~Fix behavior - when out of stock and with video, neither appears.~~
 2. ~~Not showing up on brands.~~
