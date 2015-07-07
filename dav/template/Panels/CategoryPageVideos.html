@@ -20,6 +20,9 @@
             height: 100%;\
             width: 100%;\
         }\
+        .categoryDemoVideo video::-webkit-media-controls {\
+            width: 100%;\
+        }\
         .Rating.Rating0 {\
             display: none !important;\
         }\
@@ -31,6 +34,7 @@
             z-index: 90;\
             display: block;\
             background-color: #39B54A;\
+            background-color: #6ADA78;\
             top:0;\
             right:0;\
         }\
@@ -90,6 +94,7 @@
         /* Visit each product page and check for video options tag, and if tag exists, add a Play/Stop tirgger button */
         $('.ProductCompareButton .CheckBox').each(function checkForVideo(url) {
             var $thisProductListingItem = $(this).closest('li');
+            var fadingPlayBtn = $('<span class="videoDemoBtn"><div class="triangle"></div></span>').hide().fadeIn(700);
             var productNumber = $(this).attr('value');
             var ProductCatOpt = $(this).parents().eq(3).find('.ProductActionAdd a');
     
@@ -104,12 +109,12 @@
                 });
             }
             $.when(ajax1()).done(function(a1) {
-                $thisProductListingItem.append('<span class="videoDemoBtn"><div class="triangle"></div></span>');
+                $thisProductListingItem.append(fadingPlayBtn);
             });
         });
     };
         
-    $(document).ready(function() {
+    $(window).load(function() {
         showProductListDemoVideos();
     });
 </script>
