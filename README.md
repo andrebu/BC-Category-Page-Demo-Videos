@@ -77,6 +77,20 @@ BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/c
 * [BigCommerce ThumbScroll](https://github.com/iamandrebulatov/BC-ThumbScroll)
 * [BigCommerce Product Accessory Options Choice Upsell](https://github.com/iamandrebulatov/BC-Product-Accessory-Options-Choice-Upsell)
 * [BigCommerce Navigation Dynamic List Item Visual Cues](https://github.com/iamandrebulatov/BC-Nav-Dynamic-List-Item-Visual-Cues)
+* [BigCommerce Contact Form](https://github.com/iamandrebulatov/BC-Contact-Form)
+* [BigCommerce Hot Item Product Counter](https://github.com/iamandrebulatov/BC-Hot-Item-Product-Counter)
+* [BigCommerce Shipping Time Dynamic Feature](https://github.com/iamandrebulatov/BC-Product-Shipping-Time-Dynamic)
+* [BigCommerce Category Page Sold Out Products Reorder](https://github.com/iamandrebulatov/BC-Category-Push-Sold-Out-Products-to-Bottom)
+* [BigCommerce Wholesale Price and Item Hide and Other Features](https://github.com/iamandrebulatov/BC-Wholesale-Price-and-Item-Hide)
+* [BigCommerce Sharing Savings Discount](https://github.com/iamandrebulatov/BC-Sharing-Savings-Discount)
+* [BigCommerce Tooltips](https://github.com/iamandrebulatov/BC-Tooltips)
+* [BigCommerce Order Shipment Tracking APIs ofr USPS, UPS and FedEx](https://github.com/iamandrebulatov/BC-Order-Shipping-Tracking)
+* [BigCommerce Misc Projects](https://github.com/iamandrebulatov/BigCommerce-Projects) 
+  * Site Navigation AJAXification
+  * List of SEO enhancements and improvements
+  * Product Images Swipeable
+  * Contact Form Overhaul and AJAXification
+  * Cart Item Removal AJAXification
 
 
 
@@ -87,7 +101,11 @@ BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/c
 - [Css-tricks.com: Hiding Native HTML5 Video Controls in Full-Screen Mode](https://css-tricks.com/custom-controls-in-html5-video-full-screen/)
 - [How to autoplay HTML5 mp4 video on Android?](http://stackoverflow.com/questions/9075520/how-to-autoplay-html5-mp4-video-on-android)
 - [Making HTML5 Video work on Android phones](http://www.broken-links.com/2010/07/08/making-html5-video-work-on-android-phones/)
+- [jQuery function after .append](http://stackoverflow.com/questions/6068955/jquery-function-after-append)
 - []()
+- []()
+- []()
+
 
 ------------------------------------------------------------------------------------
 
