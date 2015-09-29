@@ -85,6 +85,7 @@ BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/c
 ## Resources
 
 - [Css-tricks.com: Hiding Native HTML5 Video Controls in Full-Screen Mode](https://css-tricks.com/custom-controls-in-html5-video-full-screen/)
+- [How to autoplay HTML5 mp4 video on Android?](http://stackoverflow.com/questions/9075520/how-to-autoplay-html5-mp4-video-on-android)
 - []()
 
 ------------------------------------------------------------------------------------
