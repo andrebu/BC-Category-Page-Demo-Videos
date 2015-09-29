@@ -75,6 +75,8 @@
     function showProductListDemoVideos() {
         /* Play-Stop trigger button functionality */
         $('.ProductList').on('click', '.videoDemoBtn', function() {
+	        //var thisVideoIndex = $(this.className).replace(/\D/g,'');
+	        var thisVideoIndex = $(this).attr('class').replace(/\D/g,'');
             if ($(this).hasClass('videoPlaying')) {
                 $(this).removeClass('videoPlaying');
                 $(this).parent().find('.categoryDemoVideo').remove();
@@ -84,7 +86,7 @@
 	            }
             	var productNumber = $(this).parent().find('.ProductCompareButton .CheckBox').attr('value');
                 var videoTagCode = '<div class="categoryDemoVideo">' +
-                    '<video id="demoVideo" class="video" poster="/content/images/dankstop-loading-running-cat-wbg3.gif" preload autoplay loop autobuffer muted controls width="100%" height="100%" >' +
+                    '<video id="demoVideo'+thisVideoIndex+'" class="video" poster="/content/images/dankstop-loading-running-cat-wbg3.gif" preload autoplay loop autobuffer muted controls width="100%" height="100%" >' +
                     '<source src="/content/videos/' + productNumber + '.mp4" type="video/mp4">' +
                     '<source src="/content/videos/' + productNumber + '.ogv" type="video/ogg">' +
                     '<p>Your browser does not support this video.  Please upgrade your browser!</p>' +
@@ -92,14 +94,17 @@
                     '</div>';
                 $(this).addClass('videoPlaying');
                 $(this).parent().find('.ProductImage').append(videoTagCode);
-				var video = document.getElementById('demoVideo');
+				var video = document.getElementById('demoVideo'+thisVideoIndex+'');
+				//var video = $(this).parent().find('video');
 				video.play();
             }
         });
         /* Visit each product page and check for video options tag, and if tag exists, add a Play/Stop tirgger button */
+        var videoIndex = 0;
         $('.ProductCompareButton .CheckBox').each(function checkForVideo(url) {
+	        videoIndex++;
             var $thisProductListingItem = $(this).closest('li');
-            var fadingPlayBtn = $('<span class="videoDemoBtn"><div class="triangle"></div></span>').hide().fadeIn(700);
+            var fadingPlayBtn = $('<span class="videoDemoBtn video'+videoIndex+'"><div class="triangle"></div></span>').hide().fadeIn(700);
             var productNumber = $(this).attr('value');
             var ProductCatOpt = $(this).parents().eq(3).find('.ProductActionAdd a');
     
