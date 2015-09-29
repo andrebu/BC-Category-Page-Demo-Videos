@@ -75,7 +75,6 @@
     function showProductListDemoVideos() {
         /* Play-Stop trigger button functionality */
         $('.ProductList').on('click', '.videoDemoBtn', function() {
-	        //var thisVideoIndex = $(this.className).replace(/\D/g,'');
 	        var thisVideoIndex = $(this).attr('class').replace(/\D/g,'');
             if ($(this).hasClass('videoPlaying')) {
                 $(this).removeClass('videoPlaying');
@@ -95,7 +94,6 @@
                 $(this).addClass('videoPlaying');
                 $(this).parent().find('.ProductImage').append(videoTagCode);
 				var video = document.getElementById('demoVideo'+thisVideoIndex+'');
-				//var video = $(this).parent().find('video');
 				video.play();
             }
         });
