@@ -103,7 +103,9 @@ BigCommerce Category Page Demo Videos that are dynamically pulled from /WebDAV/c
 - [How to autoplay HTML5 mp4 video on Android?](http://stackoverflow.com/questions/9075520/how-to-autoplay-html5-mp4-video-on-android)
 - [Making HTML5 Video work on Android phones](http://www.broken-links.com/2010/07/08/making-html5-video-work-on-android-phones/)
 - [jQuery function after .append](http://stackoverflow.com/questions/6068955/jquery-function-after-append)
-- []()
+- [Check if array is empty or null](http://stackoverflow.com/questions/7198197/check-if-array-is-empty-or-null)
+- [How to remove an element from an array](http://www.simonewebdesign.it/how-to-remove-element-from-array/)
+- [a better way to convert JS object to array](http://stackoverflow.com/questions/6857468/a-better-way-to-convert-js-object-to-array)
 - []()
 - []()
 
