@@ -72,17 +72,16 @@
         </style>')
             .appendTo('head');
             
+	var allActiveBtns;
     function showProductListDemoVideos() {
         /* Play-Stop trigger button functionality */
         $('.ProductList').on('click', '.videoDemoBtn', function() {
 	        var thisVideoIndex = $(this).attr('class').replace(/\D/g,'');
+	            //console.log($('.ProductList .videoDemoBtn.videoPlaying'));
             if ($(this).hasClass('videoPlaying')) {
                 $(this).removeClass('videoPlaying');
                 $(this).parent().find('.categoryDemoVideo').remove();
             } else {
-                if ($('.ProductList .videoDemoBtn.videoPlaying').length > 1) {
-	                $($('.ProductList .videoDemoBtn.videoPlaying')[0]).click();
-	            }
             	var productNumber = $(this).parent().find('.ProductCompareButton .CheckBox').attr('value');
                 var videoTagCode = '<div class="categoryDemoVideo">' +
                     '<video id="demoVideo'+thisVideoIndex+'" class="video" poster="/content/images/dankstop-loading-running-cat-wbg3.gif" preload autoplay loop autobuffer muted controls width="100%" height="100%" >' +
@@ -95,6 +94,46 @@
                 $(this).parent().find('.ProductImage').append(videoTagCode);
 				var video = document.getElementById('demoVideo'+thisVideoIndex+'');
 				video.play();
+	            //console.log($('.ProductList .videoDemoBtn.videoPlaying'));
+	            //console.log($('.ProductList .videoDemoBtn.videoPlaying')[0]);
+	            //console.log($('.ProductList .videoDemoBtn.videoPlaying')[1]);
+	            //console.log(allActiveBtns[0]);
+/*
+				if (!allActiveBtns) {
+				        var allActiveBtns = $.map($('.ProductList .videoDemoBtn.videoPlaying'), function(value, index) {
+							return [value];
+						});
+	            console.log(allActiveBtns);
+				}
+*/
+
+	            console.log(allActiveBtns);
+                if ($('.ProductList .videoDemoBtn.videoPlaying').length > 1) {
+	                $(allActiveBtns[0]).click();
+	            console.log(allActiveBtns);
+    	            //allActiveBtns.shift();
+	            //console.log(allActiveBtns);
+				//allActiveBtns.splice(0, 1);
+	            //console.log(allActiveBtns);
+    	            allActiveBtns.push(this);
+	            console.log(allActiveBtns);
+					//allActiveBtns.splice(0, 1);
+/*
+    	            allActiveBtns = $.map($('.ProductList .videoDemoBtn.videoPlaying'), function(value, index) {
+						return [value];
+					});
+*/
+	            console.log(allActiveBtns);
+	            //console.log(allActiveBtns[0]);
+	            } else {
+	            console.log(allActiveBtns);
+					allActiveBtns = $.map($('.ProductList .videoDemoBtn.videoPlaying'), function(value, index) {
+						return [value];
+					});
+	            console.log(allActiveBtns);
+					//console.log(allActiveBtns);
+    	            //allActiveBtns = $('.ProductList .videoDemoBtn.videoPlaying');
+	            }
             }
         });
         /* Visit each product page and check for video options tag, and if tag exists, add a Play/Stop tirgger button */
