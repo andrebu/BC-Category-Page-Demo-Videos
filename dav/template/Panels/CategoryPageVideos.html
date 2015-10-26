@@ -415,8 +415,9 @@
 	            }
             	var productNumber = $(this).parent().find('.ProductCompareButton .CheckBox').attr('value');
 				if ($(this).hasClass('yTVideo')) {
+					var vidId = DankStopGlossary.videos[productNumber];
 	                var videoTagCode = '<div class="categoryDemoVideo"><iframe height="100%" width="100%" src="http://www.youtube.com/embed/'; 
-	                	videoTagCode += '' + DankStopGlossary.videos[productNumber] + '?autoplay=1&loop=1" ';
+	                	videoTagCode += '' + vidId + '?autoplay=1&loop=1&playlist='+ vidId +'" ';
 	                	videoTagCode += 'frameborder="0" allowfullscreen></iframe></div>';
 	            } else {
 	                var videoTagCode = '<div class="categoryDemoVideo">' +
