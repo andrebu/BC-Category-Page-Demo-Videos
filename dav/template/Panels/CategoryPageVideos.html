@@ -7,7 +7,7 @@
             /*width: 310px;*/\
             width: 33%;\
         }\
-        .categoryDemoVideo {\
+        .catVid {\
             position: absolute;\
             top: 0;\
             left: 0;\
@@ -15,12 +15,13 @@
             bottom: 0;\
             height: 100%;\
             background-color: #fff;\
+			pointer-events: none;\
         }\
-        .categoryDemoVideo video {\
+        .catVid video {\
             height: 100%;\
             width: 100%;\
         }\
-        .categoryDemoVideo video::-webkit-media-controls {\
+        .catVid video::-webkit-media-controls {\
             width: 100%;\
         }\
         .Rating.Rating0 {\
@@ -405,10 +406,10 @@
     function showProductListDemoVideos() {
         /* Play-Stop trigger button functionality */
         $('.ProductList').on('click', '.videoDemoBtn', function() {
-	        var thisVideoIndex = $(this).attr('class').replace(/\D/g,'');
+	        var thisVidNum = $(this).attr('class').replace(/\D/g,'');
             if ($(this).hasClass('videoPlaying')) {
                 $(this).removeClass('videoPlaying');
-                $(this).parent().find('.categoryDemoVideo').remove();
+                $(this).parent().find('.catVid').remove();
             } else {
                 if ($('.ProductList .videoDemoBtn.videoPlaying').length > 1) {
 	                $($('.ProductList .videoDemoBtn.videoPlaying')[0]).click();
@@ -416,22 +417,24 @@
             	var productNumber = $(this).parent().find('.ProductCompareButton .CheckBox').attr('value');
 				if ($(this).hasClass('yTVideo')) {
 					var vidId = DankStopGlossary.videos[productNumber];
-	                var videoTagCode = '<div class="categoryDemoVideo"><iframe height="100%" width="100%" src="http://www.youtube.com/embed/'; 
-	                	videoTagCode += '' + vidId + '?autoplay=1&loop=1&playlist='+ vidId +'" ';
+					var yTParams = '?autoplay=1&loop=1&playlist='+ vidId + '&theme=light&controls=0';
+	                var videoTagCode = '<div class="catVid yTV"><iframe height="100%" width="100%" src="http://www.youtube.com/embed/'; 
+	                	videoTagCode += '' + vidId + yTParams +'" ';
 	                	videoTagCode += 'frameborder="0" allowfullscreen></iframe></div>';
 	            } else {
-	                var videoTagCode = '<div class="categoryDemoVideo">' +
-	                    '<video id="demoVideo'+thisVideoIndex+'" class="video" poster="/content/images/dankstop-loading-running-cat-wbg3.gif" preload autoplay loop autobuffer muted controls width="100%" height="100%" >' +
-	                    '<source src="/content/videos/' + productNumber + '.mp4" type="video/mp4">' +
-	                    '<source src="/content/videos/' + productNumber + '.ogv" type="video/ogg">' +
-	                    '<p>Your browser does not support this video.  Please upgrade your browser!</p>' +
-	                    '</video>' +
+	                var videoTagCode = '<div class="catVid">' +
+	                    '<video id="demoVideo'+thisVidNum+'" class="video" poster="/content/images/dankstop-loading-running-cat-wbg3.gif"'+
+	                    ' preload autoplay loop autobuffer muted controls width="100%" height="100%" >'+
+	                    '<source src="/content/videos/' + productNumber + '.mp4" type="video/mp4">'+
+	                    '<source src="/content/videos/' + productNumber + '.ogv" type="video/ogg">'+
+	                    '<p>Your browser does not support this video.  Please upgrade your browser!</p>'+
+	                    '</video>'+
 	                    '</div>';
 	            }
                 $(this).addClass('videoPlaying');
                 $(this).parent().find('.ProductImage').append(videoTagCode);
-				var video = document.getElementById('demoVideo'+thisVideoIndex+'');
-				video.play();
+				var video = document.getElementById('demoVideo'+thisVidNum+'');
+				if (video) video.play();
             }
         });
         /* If produt video ID exists in DankStopGlossary DB, add a Play/Stop tirgger button */
