@@ -1,8 +1,10 @@
 <style>
 @media screen and (max-width: 768px) {
+/*
 	.catVid {
 		pointer-events: initial;
 	}
+*/
 }
 </style>
 <script type="text/javascript">
@@ -130,6 +132,7 @@
 		    "459": "G5mrDvqdcY",
 		    "470": "mMUKzwz0G5s",
 		    "484": "0Ngm-dc5JdE",
+			"486": "uM6eQ7bocpk",
 		    "487": "gsyi9UK__vA",
 		    "489": "jomnkggoL3k",
 		    "505": "IerWg3I80C0",
@@ -167,6 +170,7 @@
 		    "563": "cHaFwJdWhMU",
 		    "564": "LcgIHmRfIQ4",
 		    "565": "g6pdzEDbqKc",
+			"566": "x6P0g4t-QL8",
 		    "569": "2Dv_ecAiu3U",
 		    "570": "_7yhlPH9Qxc",
 		    "573": "SXzi2V-_mGw",
@@ -406,68 +410,150 @@
 		"misc": "misc"
 	};
 
+	/**
+	 * @author       Rob W <gwnRob@gmail.com>
+	 * @website      http://stackoverflow.com/a/7513356/938089
+	 * @version      20131010
+	 * @description  Executes function on a framed YouTube video (see website link)
+	 *               For a full list of possible functions, see:
+	 *               https://developers.google.com/youtube/js_api_reference
+	 * @param String frame_id The id of (the div containing) the frame
+	 * @param String func     Desired function to call, eg. "playVideo"
+	 *        (Function)      Function to call when the player is ready.
+	 * @param Array  args     (optional) List of arguments to pass to function func*/
+	function callPlayer(frame_id, func, args) {
+	    if (window.jQuery && frame_id instanceof jQuery) frame_id = frame_id.get(0).id;
+	    var iframe = document.getElementById(frame_id);
+	    if (iframe && iframe.tagName.toUpperCase() != 'IFRAME') {
+	        iframe = iframe.getElementsByTagName('iframe')[0];
+	    }
+	
+	    // When the player is not ready yet, add the event to a queue
+	    // Each frame_id is associated with an own queue.
+	    // Each queue has three possible states:
+	    //  undefined = uninitialised / array = queue / 0 = ready
+	    if (!callPlayer.queue) callPlayer.queue = {};
+	    var queue = callPlayer.queue[frame_id],
+	        domReady = document.readyState == 'complete';
+	
+	    if (domReady && !iframe) {
+	        // DOM is ready and iframe does not exist. Log a message
+	        window.console && console.log('callPlayer: Frame not found; id=' + frame_id);
+	        if (queue) clearInterval(queue.poller);
+	    } else if (func === 'listening') {
+	        // Sending the "listener" message to the frame, to request status updates
+	        if (iframe && iframe.contentWindow) {
+	            func = '{"event":"listening","id":' + JSON.stringify(''+frame_id) + '}';
+	            iframe.contentWindow.postMessage(func, '*');
+	        }
+	    } else if (!domReady ||
+	               iframe && (!iframe.contentWindow || queue && !queue.ready) ||
+	               (!queue || !queue.ready) && typeof func === 'function') {
+	        if (!queue) queue = callPlayer.queue[frame_id] = [];
+	        queue.push([func, args]);
+	        if (!('poller' in queue)) {
+	            // keep polling until the document and frame is ready
+	            queue.poller = setInterval(function() {
+	                callPlayer(frame_id, 'listening');
+	            }, 250);
+	            // Add a global "message" event listener, to catch status updates:
+	            messageEvent(1, function runOnceReady(e) {
+	                if (!iframe) {
+	                    iframe = document.getElementById(frame_id);
+	                    if (!iframe) return;
+	                    if (iframe.tagName.toUpperCase() != 'IFRAME') {
+	                        iframe = iframe.getElementsByTagName('iframe')[0];
+	                        if (!iframe) return;
+	                    }
+	                }
+	                if (e.source === iframe.contentWindow) {
+	                    // Assume that the player is ready if we receive a
+	                    // message from the iframe
+	                    clearInterval(queue.poller);
+	                    queue.ready = true;
+	                    messageEvent(0, runOnceReady);
+	                    // .. and release the queue:
+	                    while (tmp = queue.shift()) {
+	                        callPlayer(frame_id, tmp[0], tmp[1]);
+	                    }
+	                }
+	            }, false);
+	        }
+	    } else if (iframe && iframe.contentWindow) {
+	        // When a function is supplied, just call it (like "onYouTubePlayerReady")
+	        if (func.call) return func();
+	        // Frame exists, send message
+	        iframe.contentWindow.postMessage(JSON.stringify({
+	            "event": "command",
+	            "func": func,
+	            "args": args || [],
+	            "id": frame_id
+	        }), "*");
+	    }
+	    /* IE8 does not support addEventListener... */
+	    function messageEvent(add, listener) {
+	        var w3 = add ? window.addEventListener : window.removeEventListener;
+	        w3 ?
+	            w3('message', listener, !1)
+	        :
+	            (add ? window.attachEvent : window.detachEvent)('onmessage', listener);
+	    }
+	}
+
+
             
     function showProductListDemoVideos() {
         /* Play-Stop trigger button functionality */
         $('.ProductList').on('click', '.videoDemoBtn', function() {
-	        var thisVidNum = $(this).attr('class').replace(/\D/g,'');
+	        var thisVN = $(this).attr('class').replace(/\D/g,'');
             if ($(this).hasClass('videoPlaying')) {
                 $(this).removeClass('videoPlaying');
                 $(this).parent().find('.catVid').remove();
-                $('#yTApiSc' + thisVidNum).remove();
+                $('#yTApiSc' + thisVN).remove();
             } else {
                 if ($('.ProductList .videoDemoBtn.videoPlaying').length > 1) {
 	                $($('.ProductList .videoDemoBtn.videoPlaying')[0]).click();
 	            }
             	var productNumber = $(this).parent().find('.ProductCompareButton .CheckBox').attr('value');
+            	var vidType;
 				if ($(this).hasClass('yTVideo')) {
 					var vidId = DankStopGlossary.videos[productNumber];
 					var wLO = window.location.origin;
-					var yTParams = '?enablejsapi=1&autoplay=1&loop=1&playlist='+ vidId + '&theme=light&controls=0&origin=' + wLO;
-	                var videoTagCode = '<div class="catVid yTV yTV'+thisVidNum+'"><iframe id="yTV" src="http://www.youtube.com/embed/'; 
+					var yTParams = '?enablejsapi=1&modestbranding=1&showinfo=0&controls=0&autoplay=1&rel=0&loop=1&theme=light&fs=0';
+						yTParams += '&playlist='+ vidId + '&origin=' + wLO;
+	                var videoTagCode = '<div class="catVid yTV yTV'+thisVN+'"><iframe id="yTV'+thisVN+'" src="http://www.youtube.com/embed/'; 
 	                	videoTagCode += '' + vidId + yTParams +'" height="100%" width="100%" ';
 	                	videoTagCode += 'frameborder="0" allowfullscreen></iframe></div>';
-					if (typeof tag === "undefined") { 
-						// if first run load the YT API which will call the correct functions.
-						var tag = document.createElement('script');
-						tag.src = "https://www.youtube.com/iframe_api";
-						tag.id = "yTApiSc" + thisVidNum;
-						var firstScriptTag = document.getElementsByTagName('script')[0];
-						firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-					} else {
-						// if YT api already loaded, we need to call the function.
-						onYouTubeIframeAPIReady();
-					}
-					var player;
-					window.onYouTubeIframeAPIReady = function() {
-						console.log('HELLO!');
-						player = new YT.Player('yTV', {
-							videoId: ''+vidId+'',
-							events: {
-								'onReady': onPlayerReady
-							}
-						});
-					}
-					
-					// 4. The API will call this function when the video player is ready.
-					function onPlayerReady(event) {
-						console.log('HELLO!  22222');
-						event.target.playVideo();
-					}
+						vidType = 'yt';
 	            } else {
 	                var videoTagCode = '<div class="catVid">' +
-	                    '<video id="demoVideo'+thisVidNum+'" class="video" poster="/content/images/dankstop-loading-running-cat-wbg3.gif"'+
+	                    '<video id="demoVideo'+thisVN+'" class="video" poster="/content/images/dankstop-loading-running-cat-wbg3.gif"'+
 	                    ' preload autoplay loop autobuffer muted controls width="100%" height="100%" >'+
 	                    '<source src="/content/videos/' + productNumber + '.mp4" type="video/mp4">'+
 	                    '<source src="/content/videos/' + productNumber + '.ogv" type="video/ogg">'+
 	                    '<p>Your browser does not support this video.  Please upgrade your browser!</p>'+
 	                    '</video>'+
 	                    '</div>';
+						vidType = 'local';
 	            }
                 $(this).addClass('videoPlaying');
                 $(this).parent().find('.ProductImage').append(videoTagCode);
-				var video = document.getElementById('demoVideo'+thisVidNum+'');
-				if (video) video.play();
+                //Figure out if video is YouTube or local and use appropriate method to autoplay
+                function playVideo(videoTpye) {
+	                if (videoTpye == 'yt') {
+		                callPlayer('yTV'+thisVN+'', function() {
+						    // This function runs once the player is ready ("onYouTubePlayerReady")
+						    callPlayer('yTV'+thisVN+'', "playVideo");
+						});
+						// When the player is not ready yet, the function will be queued.
+						// When the iframe cannot be found, a message is logged in the console.
+						callPlayer('yTV'+thisVN+'', "playVideo");
+	                } else if (videoTpye == 'local') {
+						var video = document.getElementById('demoVideo'+thisVN+'');
+						if (video) video.play();
+	                }
+                }
+                playVideo(vidType);
             }
         });
         /* If produt video ID exists in DankStopGlossary DB, add a Play/Stop tirgger button */
