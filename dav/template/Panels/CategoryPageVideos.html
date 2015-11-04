@@ -1,4 +1,75 @@
 <style>
+.SearchContainer .ProductList li {
+	overflow: visible;
+	width: 33%;
+}
+.catVid {
+	position: absolute;
+	top: -1%;
+	left: -1%;
+	right: -1%;
+	bottom: -1%;
+	height: 102%;
+	width: 102%;
+	background-color: #fff;
+	pointer-events: none;
+}
+.catVid video {
+	height: 100%;
+	width: 100%;
+}
+.catVid video::-webkit-media-controls {
+	width: 100%;
+}
+.catVid iframe {
+	border: none;
+}
+.Rating.Rating0 {
+	display: none !important;
+}
+.videoDemoBtn {
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	cursor: pointer;
+	z-index: 90;
+	display: block;
+	background-color: #39B54A;
+	background-color: #6ADA78;
+	top:0;
+	right:0;
+}
+.videoDemoBtn.videoPlaying {
+	background-color: #e53b2c;
+}
+.videoDemoBtn .triangle {
+	width: 0px;
+	height: 0px;
+	left: 13px;
+	top: 6px;
+	position: absolute;
+	border-top: 6px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-left: 12px solid #fff;
+	z-index: 1;
+	border-radius: 2px;
+	color: #fff;
+}
+.videoDemoBtn .triangle:after {
+	content: "DEMO";
+	position: absolute;
+	text-transform: uppercase;
+	left: -17px;
+	top: 9px;
+	font-size: 8px;
+}
+.videoDemoBtn.videoPlaying .triangle {
+	border: 6px solid #fff;
+	left: 12px;
+}
+.videoDemoBtn.videoPlaying .triangle:after {
+	left: -10px;
+}
 @media screen and (max-width: 768px) {
 /*
 	.catVid {
@@ -8,80 +79,6 @@
 }
 </style>
 <script type="text/javascript">
-//Category Page Demo Videos 
-        $('<style type="text/css">\
-        /* Category Product List Video */\
-        .SearchContainer .ProductList li {\
-            overflow: visible;\
-            /*width: 310px;*/\
-            width: 33%;\
-        }\
-        .catVid {\
-            position: absolute;\
-            top: -1%;\
-            left: -1%;\
-            right: -1%;\
-            bottom: -1%;\
-            height: 102%;\
-            width: 102%;\
-            background-color: #fff;\
-			pointer-events: none;\
-        }\
-        .catVid video {\
-            height: 100%;\
-            width: 100%;\
-        }\
-        .catVid video::-webkit-media-controls {\
-            width: 100%;\
-        }\
-        .Rating.Rating0 {\
-            display: none !important;\
-        }\
-        .videoDemoBtn {\
-            width: 36px;\
-            height: 36px;\
-            position: absolute;\
-            cursor: pointer;\
-            z-index: 90;\
-            display: block;\
-            background-color: #39B54A;\
-            background-color: #6ADA78;\
-            top:0;\
-            right:0;\
-        }\
-        .videoDemoBtn.videoPlaying {\
-            background-color: #e53b2c;\
-        }\
-        .videoDemoBtn .triangle {\
-            width: 0px;\
-            height: 0px;\
-            left: 13px;\
-            top: 6px;\
-            position: absolute;\
-            border-top: 6px solid transparent;\
-            border-bottom: 7px solid transparent;\
-            border-left: 12px solid #fff;\
-            z-index: 1;\
-            border-radius: 2px;\
-            color: #fff;\
-        }\
-        .videoDemoBtn .triangle:after {\
-            content: "DEMO";\
-            position: absolute;\
-            text-transform: uppercase;\
-            left: -17px;\
-            top: 9px;\
-            font-size: 8px;\
-        }\
-        .videoDemoBtn.videoPlaying .triangle {\
-            border: 6px solid #fff;\
-            left: 12px;\
-        }\
-        .videoDemoBtn.videoPlaying .triangle:after {\
-            left: -10px;\
-        }\
-        </style>')
-            .appendTo('head');
 
 	var DankStopGlossary = {
 		"videos": {
@@ -96,12 +93,21 @@
 			"189": "QRBKbFpqsiM",
 			"190": "QRBKbFpqsiM",
 			"191": "Ysem3a5di7M",
+			"227": "1YIpDZWSHY0",
+			"231": "ZmH74Ymfs-0",
+			"232": "TIgVLHhRbA8",
+			"238": "ZmH74Ymfs-0",
+			"240": "wVpTXNiewW0",
+			"244": "Ve3LX-dhTMc",
 			"247": "kpCY5YHkRbU",
 			"253": "7_oEvOfVy-U",
+			"254": "deolTetaRtw",
 			"284": "Yk0ZNEJOn5A",
 			"287": "oqAzUkvYdao",
 			"288": "x4wPOs6eeYI",
 			"289": "IwZzvJaf_28",
+			"290": "deolTetaRtw",
+			"297": "QMWebgFB9Yk",
 			"305": "xmA3SWn5L_k",
 			"308": "gWMlfGteBO4",
 			"312": "sGR7tZsjhRc",
@@ -130,8 +136,10 @@
 			"457": "dZQakj6BHyA",
 			"458": "yqHilJ-rHaI",
 			"459": "4G5mrDvqdcY",
+			"461": "Zsjr46Vv13A",
 			"470": "mMUKzwz0G5s",
 			"484": "0Ngm-dc5JdE",
+			"485": "hhlPsgA2uec",
 			"486": "uM6eQ7bocpk",
 			"487": "gsyi9UK__vA",
 			"489": "jomnkggoL3k",
@@ -219,7 +227,7 @@
 			"673": "JdLnJaLdTEo",
 			"674": "yes",
 			"675": "yes",
-			"677": "yes",
+			"677": "dWy9RHKUaYE",
 			"678": "-TkO8tFaTpA",
 			"679": "9l33Az5i0VQ",
 			"684": "4bw4rVEJxhk",
@@ -239,14 +247,18 @@
 			"724": "yjQCKjqCyiw",
 			"725": "P-5hfL2AaME",
 			"728": "fOxPC_bpwEQ",
-			"729": "yes",
+			"729": "mnhA7U4eD0Y",
 			"730": "nN_03r4BPYI",
 			"731": "78I-UTaEX0s",
 			"733": "tb0nl38VZGM",
+			"736": "PPIz8g0GAus",
 			"742": "Ih60R599hGo",
 			"755": "y8N6JjsqJuA",
+			"757": "x_NhNRSX4V0",
 			"769": "dxSjlTBIxUs",
 			"770": "Dkp43Cc-jWE",
+			"772": "yes",
+			"774": "5oyo2cEbsm0",
 			"778": "Pl7o8J5WRBY",
 			"780": "uGKN2TN3yU8",
 			"781": "61cCsHmDMrA",
@@ -262,6 +274,7 @@
 			"802": "242mYjrLkYc",
 			"805": "H6XnVY1cRAw",
 			"806": "xZi1BaGxIqU",
+			"811": "4Gf7MQgrFno",
 			"812": "yes",
 			"813": "nJuySvDsi5E",
 			"814": "nJuySvDsi5E",
@@ -293,7 +306,7 @@
 			"876": "8VsJLeGRepk",
 			"877": "q0H8icohwPE",
 			"878": "kSEPy-11zp8",
-			"879": "yes",
+			"879": "IebsJwE4qcM",
 			"880": "EvO3Y96eRxg",
 			"882": "2do6cJEFZ5s",
 			"883": "CwbSqtrzeoM",
@@ -306,7 +319,7 @@
 			"891": "xF1e9mIEd4E",
 			"892": "7_Gh-M42WvA",
 			"893": "TCIYPiBYwnE",
-			"897": "yes",
+			"897": "K63TQFQqb7c",
 			"899": "e-62yal0tE4",
 			"900": "SZxIfcrPK1Q",
 			"902": "8F2VEc3puJI",
@@ -325,7 +338,7 @@
 			"945": "1mnDE5rFx0k",
 			"946": "mzlvVeucvbQ",
 			"947": "4GwEGA0pryA",
-			"948": "yes",
+			"948": "3ke3RnB4A2I",
 			"961": "Kb8EVZm1zk0",
 			"964": "KyT2ErZQU_0",
 			"965": "EIBowatxtK0",
@@ -340,41 +353,42 @@
 			"987": "bGPoOnfdACM",
 			"990": "7ejc85h_sG4",
 			"991": "Et6clQDn79Q",
-			"992": "yes",
+			"992": "Z-xxsraL3_4",
 			"993": "Z-xxsraL3_4",
-			"998": "yes",
+			"998": "n2mbyXHheck",
 			"999": "VcS37uThJx0",
 			"1001": "ODRQoj5Vsv4",
 			"1003": "oDJxHSJjgsg",
 			"1006": "d2AUp4w18GE",
-			"1010": "yes",
+			"1010": "ihijJHPU-SQ",
 			"1012": "roUwZAO0aiw",
 			"1045": "RvhUpJcXqzY",
 			"1046": "YH1nvZJc3fU",
-			"1047": "yes",
-			"1048": "yes",
+			"1047": "SI0SYXfUK3A",
+			"1048": "zr97J2g26Y4",
 			"1049": "T5wKIcOruYA",
 			"1054": "wb1fnoc9Y7w",
 			"1057": "HcoS9Htw-ew",
-			"1059": "yes",
+			"1059": "XfBOLfREJts",
 			"1094": "OeG-nwL1O_o",
 			"1102": "u35uqZQ2PlQ",
 			"1104": "yIj1lo5eP6A",
-			"1106": "yes",
-			"1107": "yes",
+			"1106": "pSiVzDltt8Q",
+			"1107": "3YohwnjyaSs",
 			"1108": "7ejc85h_sG4",
+			"1109": "YDfYU2Sjc5g",
 			"1114": "ReGntb6VHEc",
 			"1116": "yes",
 			"1117": "xjOvyhSXeOg",
 			"1118": "qaZpGvez7uQ",
-			"1119": "yes",
-			"1120": "yes",
-			"1121": "yes",
-			"1132": "yes",
-			"1135": "yes",
-			"1136": "yes",
-			"1137": "yes",
-			"1158": "yes",
+			"1119": "3-nvKxXG0H8",
+			"1120": "8RQDoDtrZOA",
+			"1121": "uKX233jhpY0",
+			"1132": "07dX4ApIahA",
+			"1135": "vHiwNz-Y1TM",
+			"1136": "SyurfkZY_Hw",
+			"1137": "WA7Z27ARKdo",
+			"1158": "3KRVAj8ibXo",
 			"1174": "s4n5Q03VwNw",
 			"1179": "NJiIm4twFIk",
 			"1183": "vs7ZQXo53R0",
@@ -414,7 +428,16 @@
 			"1338": "RuTvhIZYmwI",
 			"1340": "atKJY9aC0w8",
 			"1342": "r7IQygv49ys",
-			"1343": "9ANEdaqUYgY"
+			"1343": "9ANEdaqUYgY",
+			"1351": "rVa3mFqivDc",
+			"1352": "1zRwTWrYRbw",
+			"1353": "iLcaFv7uJtg",
+			"1354": "0vG7tR3QcOo",
+			"1355": "ZD4c8f59zXQ",
+			"1360": "8EHA6dFwJtc",
+			"1363": "Yk5tn6D-1Gs",
+			"1366": "NzmpQ33krgM",
+			"1367": "GcxE-uevuaI",
 		},
 		"misc": "misc"
 	};
@@ -546,8 +569,8 @@
                 $(this).addClass('videoPlaying');
                 $(this).parent().find('.ProductImage').append(videoTagCode);
                 //Figure out if video is YouTube or local and use appropriate method to autoplay
-                function playVideo(videoTpye) {
-	                if (videoTpye == 'yt') {
+                function playVideo(videoType) {
+	                if (videoType == 'yt') {
 		                callPlayer('yTV'+thisVN+'', function() {
 						    // This function runs once the player is ready ("onYouTubePlayerReady")
 						    callPlayer('yTV'+thisVN+'', "playVideo");
@@ -555,7 +578,7 @@
 						// When the player is not ready yet, the function will be queued.
 						// When the iframe cannot be found, a message is logged in the console.
 						callPlayer('yTV'+thisVN+'', "playVideo");
-	                } else if (videoTpye == 'local') {
+	                } else if (videoType == 'local') {
 						var video = document.getElementById('demoVideo'+thisVN+'');
 						if (video) video.play();
 	                }
